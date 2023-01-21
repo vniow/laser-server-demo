@@ -33,6 +33,8 @@ export class Simulator extends Device {
           const data = JSON.parse(message.toString());
           if (data.type === 'CLICK') {
             console.log('CLICK', data.data);
+          } else if (data.type === 'SPACEBAR') {
+            console.log('SPACEBAR', data.data);
           }
         });
       });

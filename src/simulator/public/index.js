@@ -31,7 +31,7 @@ const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 let lastRenderTime;
 
-// Next, you'll need to add an event listener to the canvas that listens for a "click" event
+// add an event listener to the canvas that listens for a "click" event
 canvas.addEventListener('click', function (event) {
   try {
     const x = event.clientX;
@@ -41,6 +41,18 @@ canvas.addEventListener('click', function (event) {
     console.log('Sent message:', data);
   } catch (err) {
     console.error('Error sending message:', err);
+  }
+});
+
+document.addEventListener('keydown', function (event) {
+  if (event.code === 'Space') {
+    try {
+      const data = { type: 'SPACEBAR' };
+      ws.send(JSON.stringify(data));
+      console.log('Sent message:', data);
+    } catch (err) {
+      console.error('Error sending message:', err);
+    }
   }
 });
 
