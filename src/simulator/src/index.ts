@@ -4,6 +4,7 @@ import { throttle } from './helpers';
 import express from 'express';
 import * as path from 'path';
 import * as http from 'http';
+import { EventEmitter } from 'events';
 
 // When there is no real device, we fake an interval.
 // We've measured how fast the real device streams, which was 4ms.
@@ -19,6 +20,8 @@ export class Simulator extends Device {
   wss?: WebSocketServer;
   interval?: NodeJS.Timer;
 
+  events = new EventEmitter();
+
   start(): Promise<boolean> {
     return new Promise((resolve, reject) => {
       this.server = http.createServer();
@@ -32,15 +35,15 @@ export class Simulator extends Device {
         ws.on('message', (message: Buffer) => {
           const data = JSON.parse(message.toString());
           if (data.type === 'CLICK') {
-            console.log('CLICK', data.data);
+            this.events.emit('click', data.data);
           } else if (data.type === 'SPACEBAR') {
-            console.log('SPACEBAR', data.data);
+            this.events.emit('spacebar', data.data);
           }
         });
       });
 
       this.server.listen(PORT, function () {
-        console.log(`Started BUTTS on http://localhost:${PORT}`);
+        console.log(`started laser simulator on http://localhost:${PORT}`);
         resolve(true);
       });
     });
