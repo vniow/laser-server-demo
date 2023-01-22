@@ -1,10 +1,12 @@
-## hi
+## what is this
 
-I've been learning programming using the laser-dac library to create some simple games. This repo serves as the base for the interactivity using a modified version of the Simulator to work with mouse and keyboard inputs.
+I've been learning programming using the laser-dac library to create some simple games. This repo serves as the base for the interactivity portion using a modified version of the Simulator to work with mouse and keyboard inputs.
 
-**Note** I do not have a laser to test this. Do you? Let's get in touch.
+**Note:** I do not have a laser to test this. Do you? Let's get in touch.
 
-# usage
+# how to use
+
+0. Ensure you've got `node` and `npm` set up. I'm using node v18 LTS and npm 8.15.
 
 1. Clone the repo
 2. Run `npm i`
